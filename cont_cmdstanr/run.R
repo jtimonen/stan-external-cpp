@@ -2,7 +2,7 @@ library(cmdstanr)
 
 uh <-  paste0("USER_HEADER=", file.path(getwd(), "external.hpp"))
 sf <-  paste0("STANCFLAGS=--allow-undefined")
-mod <- cmdstan_model("hei.stan",
+mod <- cmdstan_model("model.stan",
                      cpp_options = list(uh,sf),
                      include_paths = getwd(),
                      stanc_options = list("allow-undefined"),

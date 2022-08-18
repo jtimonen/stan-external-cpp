@@ -1,6 +1,6 @@
 library(rstan)
 
-mod <- rstan::stan_model("cont.stan", allow_undefined = TRUE,
+mod <- rstan::stan_model("model.stan", allow_undefined = TRUE,
            includes = paste0('\n#include "', 
                              file.path(getwd(), 'external.hpp'), '"\n'),
            auto_write = FALSE, save_dso = FALSE)
