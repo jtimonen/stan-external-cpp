@@ -2,7 +2,7 @@
 
 #include <stan/model/model_header.hpp>
 
-namespace model2d7c11921dfe_model_namespace {
+namespace model39d34f559c35_cont_namespace {
 
 using std::istream;
 using std::string;
@@ -17,8 +17,8 @@ static int current_statement_begin__;
 
 stan::io::program_reader prog_reader__() {
     stan::io::program_reader reader;
-    reader.add_event(0, 0, "start", "model2d7c11921dfe_model");
-    reader.add_event(20, 18, "end", "model2d7c11921dfe_model");
+    reader.add_event(0, 0, "start", "model39d34f559c35_cont");
+    reader.add_event(24, 22, "end", "model39d34f559c35_cont");
     return reader;
 }
 
@@ -26,18 +26,23 @@ template <typename T0__>
 typename boost::math::tools::promote_args<T0__>::type
 add_two(const T0__& x, std::ostream* pstream__);
 
-class model2d7c11921dfe_model
-  : public stan::model::model_base_crtp<model2d7c11921dfe_model> {
+template <typename T0__, typename T1__>
+typename boost::math::tools::promote_args<T0__, T1__>::type
+add_y(const T0__& x,
+          const T1__& y, std::ostream* pstream__);
+
+class model39d34f559c35_cont
+  : public stan::model::model_base_crtp<model39d34f559c35_cont> {
 private:
         double y;
 public:
-    model2d7c11921dfe_model(rstan::io::rlist_ref_var_context& context__,
+    model39d34f559c35_cont(rstan::io::rlist_ref_var_context& context__,
         std::ostream* pstream__ = 0)
         : model_base_crtp(0) {
         ctor_body(context__, 0, pstream__);
     }
 
-    model2d7c11921dfe_model(stan::io::var_context& context__,
+    model39d34f559c35_cont(stan::io::var_context& context__,
         unsigned int random_seed__,
         std::ostream* pstream__ = 0)
         : model_base_crtp(0) {
@@ -55,7 +60,7 @@ public:
 
         current_statement_begin__ = -1;
 
-        static const char* function__ = "model2d7c11921dfe_model_namespace::model2d7c11921dfe_model";
+        static const char* function__ = "model39d34f559c35_cont_namespace::model39d34f559c35_cont";
         (void) function__;  // dummy to suppress unused var warning
         size_t pos__;
         (void) pos__;  // dummy to suppress unused var warning
@@ -66,7 +71,7 @@ public:
 
         try {
             // initialize data block variables from context__
-            current_statement_begin__ = 6;
+            current_statement_begin__ = 7;
             context__.validate_dims("data initialization", "y", "double", context__.to_vec());
             y = double(0);
             vals_r__ = context__.vals_r("y");
@@ -82,7 +87,9 @@ public:
             // validate, set parameter ranges
             num_params_r__ = 0U;
             param_ranges_i__.clear();
-            current_statement_begin__ = 9;
+            current_statement_begin__ = 10;
+            num_params_r__ += 1;
+            current_statement_begin__ = 11;
             num_params_r__ += 1;
         } catch (const std::exception& e) {
             stan::lang::rethrow_located(e, current_statement_begin__, prog_reader__());
@@ -91,7 +98,7 @@ public:
         }
     }
 
-    ~model2d7c11921dfe_model() { }
+    ~model39d34f559c35_cont() { }
 
 
     void transform_inits(const stan::io::var_context& context__,
@@ -105,7 +112,7 @@ public:
         std::vector<double> vals_r__;
         std::vector<int> vals_i__;
 
-        current_statement_begin__ = 9;
+        current_statement_begin__ = 10;
         if (!(context__.contains_r("m1")))
             stan::lang::rethrow_located(std::runtime_error(std::string("Variable m1 missing")), current_statement_begin__, prog_reader__());
         vals_r__ = context__.vals_r("m1");
@@ -117,6 +124,20 @@ public:
             writer__.scalar_unconstrain(m1);
         } catch (const std::exception& e) {
             stan::lang::rethrow_located(std::runtime_error(std::string("Error transforming variable m1: ") + e.what()), current_statement_begin__, prog_reader__());
+        }
+
+        current_statement_begin__ = 11;
+        if (!(context__.contains_r("m2")))
+            stan::lang::rethrow_located(std::runtime_error(std::string("Variable m2 missing")), current_statement_begin__, prog_reader__());
+        vals_r__ = context__.vals_r("m2");
+        pos__ = 0U;
+        context__.validate_dims("parameter initialization", "m2", "double", context__.to_vec());
+        double m2(0);
+        m2 = vals_r__[pos__++];
+        try {
+            writer__.scalar_unconstrain(m2);
+        } catch (const std::exception& e) {
+            stan::lang::rethrow_located(std::runtime_error(std::string("Error transforming variable m2: ") + e.what()), current_statement_begin__, prog_reader__());
         }
 
         params_r__ = writer__.data_r();
@@ -151,7 +172,7 @@ public:
             stan::io::reader<local_scalar_t__> in__(params_r__, params_i__);
 
             // model parameters
-            current_statement_begin__ = 9;
+            current_statement_begin__ = 10;
             local_scalar_t__ m1;
             (void) m1;  // dummy to suppress unused var warning
             if (jacobian__)
@@ -159,29 +180,52 @@ public:
             else
                 m1 = in__.scalar_constrain();
 
+            current_statement_begin__ = 11;
+            local_scalar_t__ m2;
+            (void) m2;  // dummy to suppress unused var warning
+            if (jacobian__)
+                m2 = in__.scalar_constrain(lp__);
+            else
+                m2 = in__.scalar_constrain();
+
             // transformed parameters
-            current_statement_begin__ = 13;
+            current_statement_begin__ = 15;
             local_scalar_t__ m1_new;
             (void) m1_new;  // dummy to suppress unused var warning
             stan::math::initialize(m1_new, DUMMY_VAR__);
             stan::math::fill(m1_new, DUMMY_VAR__);
             stan::math::assign(m1_new,add_two(m1, pstream__));
 
+            current_statement_begin__ = 16;
+            local_scalar_t__ m2_new;
+            (void) m2_new;  // dummy to suppress unused var warning
+            stan::math::initialize(m2_new, DUMMY_VAR__);
+            stan::math::fill(m2_new, DUMMY_VAR__);
+            stan::math::assign(m2_new,add_y(m2, y, pstream__));
+
             // validate transformed parameters
             const char* function__ = "validate transformed params";
             (void) function__;  // dummy to suppress unused var warning
 
-            current_statement_begin__ = 13;
+            current_statement_begin__ = 15;
             if (stan::math::is_uninitialized(m1_new)) {
                 std::stringstream msg__;
                 msg__ << "Undefined transformed parameter: m1_new";
                 stan::lang::rethrow_located(std::runtime_error(std::string("Error initializing variable m1_new: ") + msg__.str()), current_statement_begin__, prog_reader__());
             }
+            current_statement_begin__ = 16;
+            if (stan::math::is_uninitialized(m2_new)) {
+                std::stringstream msg__;
+                msg__ << "Undefined transformed parameter: m2_new";
+                stan::lang::rethrow_located(std::runtime_error(std::string("Error initializing variable m2_new: ") + msg__.str()), current_statement_begin__, prog_reader__());
+            }
 
             // model body
 
-            current_statement_begin__ = 17;
+            current_statement_begin__ = 20;
             lp_accum__.add(normal_log<propto__>(m1_new, 0.0, 1.0));
+            current_statement_begin__ = 21;
+            lp_accum__.add(normal_log<propto__>(m2_new, 0.0, 1.0));
 
         } catch (const std::exception& e) {
             stan::lang::rethrow_located(e, current_statement_begin__, prog_reader__());
@@ -209,13 +253,19 @@ public:
     void get_param_names(std::vector<std::string>& names__) const {
         names__.resize(0);
         names__.push_back("m1");
+        names__.push_back("m2");
         names__.push_back("m1_new");
+        names__.push_back("m2_new");
     }
 
 
     void get_dims(std::vector<std::vector<size_t> >& dimss__) const {
         dimss__.resize(0);
         std::vector<size_t> dims__;
+        dims__.resize(0);
+        dimss__.push_back(dims__);
+        dims__.resize(0);
+        dimss__.push_back(dims__);
         dims__.resize(0);
         dimss__.push_back(dims__);
         dims__.resize(0);
@@ -234,12 +284,15 @@ public:
 
         vars__.resize(0);
         stan::io::reader<local_scalar_t__> in__(params_r__, params_i__);
-        static const char* function__ = "model2d7c11921dfe_model_namespace::write_array";
+        static const char* function__ = "model39d34f559c35_cont_namespace::write_array";
         (void) function__;  // dummy to suppress unused var warning
 
         // read-transform, write parameters
         double m1 = in__.scalar_constrain();
         vars__.push_back(m1);
+
+        double m2 = in__.scalar_constrain();
+        vars__.push_back(m2);
 
         double lp__ = 0.0;
         (void) lp__;  // dummy to suppress unused var warning
@@ -252,12 +305,19 @@ public:
 
         try {
             // declare and define transformed parameters
-            current_statement_begin__ = 13;
+            current_statement_begin__ = 15;
             double m1_new;
             (void) m1_new;  // dummy to suppress unused var warning
             stan::math::initialize(m1_new, DUMMY_VAR__);
             stan::math::fill(m1_new, DUMMY_VAR__);
             stan::math::assign(m1_new,add_two(m1, pstream__));
+
+            current_statement_begin__ = 16;
+            double m2_new;
+            (void) m2_new;  // dummy to suppress unused var warning
+            stan::math::initialize(m2_new, DUMMY_VAR__);
+            stan::math::fill(m2_new, DUMMY_VAR__);
+            stan::math::assign(m2_new,add_y(m2, y, pstream__));
 
             if (!include_gqs__ && !include_tparams__) return;
             // validate transformed parameters
@@ -267,6 +327,7 @@ public:
             // write transformed parameters
             if (include_tparams__) {
                 vars__.push_back(m1_new);
+                vars__.push_back(m2_new);
             }
             if (!include_gqs__) return;
         } catch (const std::exception& e) {
@@ -295,7 +356,7 @@ public:
     }
 
     std::string model_name() const {
-        return "model2d7c11921dfe_model";
+        return "model39d34f559c35_cont";
     }
 
 
@@ -306,12 +367,18 @@ public:
         param_name_stream__.str(std::string());
         param_name_stream__ << "m1";
         param_names__.push_back(param_name_stream__.str());
+        param_name_stream__.str(std::string());
+        param_name_stream__ << "m2";
+        param_names__.push_back(param_name_stream__.str());
 
         if (!include_gqs__ && !include_tparams__) return;
 
         if (include_tparams__) {
             param_name_stream__.str(std::string());
             param_name_stream__ << "m1_new";
+            param_names__.push_back(param_name_stream__.str());
+            param_name_stream__.str(std::string());
+            param_name_stream__ << "m2_new";
             param_names__.push_back(param_name_stream__.str());
         }
 
@@ -326,12 +393,18 @@ public:
         param_name_stream__.str(std::string());
         param_name_stream__ << "m1";
         param_names__.push_back(param_name_stream__.str());
+        param_name_stream__.str(std::string());
+        param_name_stream__ << "m2";
+        param_names__.push_back(param_name_stream__.str());
 
         if (!include_gqs__ && !include_tparams__) return;
 
         if (include_tparams__) {
             param_name_stream__.str(std::string());
             param_name_stream__ << "m1_new";
+            param_names__.push_back(param_name_stream__.str());
+            param_name_stream__.str(std::string());
+            param_name_stream__ << "m2_new";
             param_names__.push_back(param_name_stream__.str());
         }
 
@@ -342,7 +415,7 @@ public:
 
 }  // namespace
 
-typedef model2d7c11921dfe_model_namespace::model2d7c11921dfe_model stan_model;
+typedef model39d34f559c35_cont_namespace::model39d34f559c35_cont stan_model;
 
 #ifndef USING_R
 
