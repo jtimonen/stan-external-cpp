@@ -12,8 +12,9 @@ double add_two(const double &x, std::ostream* pstream__) {
 stan::math::var add_two(const stan::math::var& x, std::ostream* pstream__) {
   double x_ = x.val();
   double f = x_ + 2.0;
-  double dfdx_ = 1.0;
-  return stan::math::var(stan::math::make_callback_var(f, dfdx_));
+  return stan::math::make_callback_vari(
+    f, [x](const auto& vi) mutable { x.adj() += vi.adj_;}
+  );
 }
 
 

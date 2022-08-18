@@ -1,6 +1,6 @@
 library(rstan)
 
-mod <- rstan::stan_model("cont.stan",
+mod <- rstan::stan_model("model.stan",
   allow_undefined = TRUE,
   includes = paste0(
     '\n#include "',

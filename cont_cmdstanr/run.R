@@ -1,14 +1,12 @@
 library(cmdstanr)
 
 uh <-  paste0("USER_HEADER=", file.path(getwd(), "external.hpp"))
-sf <-  paste0("STANCFLAGS=--allow-undefined")
 mod <- cmdstan_model("model.stan",
-                     cpp_options = list(uh,sf),
+                     cpp_options = list(uh),
                      include_paths = getwd(),
                      stanc_options = list("allow-undefined"),
                      force_recompile = TRUE)
-dat <- list(y=10)
-fit <- mod$sample(mod, data = dat)
+mod$save_hpp_file()
+fit <- mod$sample(mod, data = list())
 
-# Write cpp code to file
-cat(mod@model_cpp[[2]], file="out.cpp")
+
